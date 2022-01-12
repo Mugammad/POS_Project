@@ -1,4 +1,21 @@
-let products = JSON.parse(localStorage.getItem("products")) ? JSON.parse(localStorage.getItem("products")) : [];
+let products = [
+    {
+        name: "henties",
+        catergory: "juices",
+        price: "10",
+        img: "https://www.game.co.za/medias/583388-EA-1200x1200.jpg?context=bWFzdGVyfGltYWdlc19vbmVjb218MTQxNzE4fGltYWdlL2pwZWd8aDFhL2gyOC84OTU0NTU1NzYwNjcwLmpwZ3w2OGRmNTgyMDBhNjNjNzM1YWIxZmIzMTVkMDgyNjI3Y2NkMjk4NWE4YWM2Y2ZmNTI1NTJhMDljZDk3OTVlOTdh"
+    },
+    {
+        name: "roll",
+        catergory: "bread",
+        price: "5",
+        img: "https://www.melskitchencafe.com/wp-content/uploads/french-bread-roll1.jpg"
+    },
+]
+
+products = JSON.parse(localStorage.getItem("products")) ? JSON.parse(localStorage.getItem("products")) : [];
+
+
 
 function readproducts(products){
     document.querySelector("#productlist").innerHTML = ""
