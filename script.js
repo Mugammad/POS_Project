@@ -11,6 +11,12 @@ let products = [
         price: "5",
         img: "https://www.melskitchencafe.com/wp-content/uploads/french-bread-roll1.jpg"
     },
+    {
+        name: "chocolate",
+        catergory: "sweets",
+        price: "8",
+        img: "https://www.checkers.co.za/medias/10398824EA-20190726-Media-checkers515Wx515H?context=bWFzdGVyfGltYWdlc3wxMTY1NzV8aW1hZ2UvcG5nfGltYWdlcy9oNzMvaGYwLzg4NTg5NjM5MzUyNjIucG5nfDU3OTYxZDcxN2I5OTY5ZjNlYjMwOTM1NzRmNDMxMDU3MzI0YWIzMzA0ZmNjNmExZGMzZDAxOTFlNzk4NGU2Y2Q"
+    }
 ]
 
 products = JSON.parse(localStorage.getItem("products")) ? JSON.parse(localStorage.getItem("products")) : products;
