@@ -1,25 +1,25 @@
 let products = [
     {
         name: "henties",
-        catergory: "juices",
+        catergory: "Juices",
         price: "10",
         img: "https://www.game.co.za/medias/583388-EA-1200x1200.jpg?context=bWFzdGVyfGltYWdlc19vbmVjb218MTQxNzE4fGltYWdlL2pwZWd8aDFhL2gyOC84OTU0NTU1NzYwNjcwLmpwZ3w2OGRmNTgyMDBhNjNjNzM1YWIxZmIzMTVkMDgyNjI3Y2NkMjk4NWE4YWM2Y2ZmNTI1NTJhMDljZDk3OTVlOTdh"
     },
     {
         name: "roll",
-        catergory: "bread",
+        catergory: "Bread",
         price: "5",
         img: "https://www.melskitchencafe.com/wp-content/uploads/french-bread-roll1.jpg"
     },
     {
         name: "chocolate",
-        catergory: "sweets",
+        catergory: "Sweets",
         price: "8",
         img: "https://www.checkers.co.za/medias/10398824EA-20190726-Media-checkers515Wx515H?context=bWFzdGVyfGltYWdlc3wxMTY1NzV8aW1hZ2UvcG5nfGltYWdlcy9oNzMvaGYwLzg4NTg5NjM5MzUyNjIucG5nfDU3OTYxZDcxN2I5OTY5ZjNlYjMwOTM1NzRmNDMxMDU3MzI0YWIzMzA0ZmNjNmExZGMzZDAxOTFlNzk4NGU2Y2Q"
     },
     {
         name: "loaf",
-        catergory: "bread",
+        catergory: "Bread",
         price: "10 000",
         img: "https://www.thespruceeats.com/thmb/aKWwztjCoTsiPzayXvDYx6QLyOs=/4288x2412/smart/filters:no_upscale()/loaf-of-bread-182835505-58a7008c5f9b58a3c91c9a14.jpg"
     }
