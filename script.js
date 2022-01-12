@@ -16,6 +16,12 @@ let products = [
         catergory: "sweets",
         price: "8",
         img: "https://www.checkers.co.za/medias/10398824EA-20190726-Media-checkers515Wx515H?context=bWFzdGVyfGltYWdlc3wxMTY1NzV8aW1hZ2UvcG5nfGltYWdlcy9oNzMvaGYwLzg4NTg5NjM5MzUyNjIucG5nfDU3OTYxZDcxN2I5OTY5ZjNlYjMwOTM1NzRmNDMxMDU3MzI0YWIzMzA0ZmNjNmExZGMzZDAxOTFlNzk4NGU2Y2Q"
+    },
+    {
+        name: "loaf",
+        catergory: "bread",
+        price: "10 000",
+        img: "https://www.thespruceeats.com/thmb/aKWwztjCoTsiPzayXvDYx6QLyOs=/4288x2412/smart/filters:no_upscale()/loaf-of-bread-182835505-58a7008c5f9b58a3c91c9a14.jpg"
     }
 ]
 
@@ -29,7 +35,7 @@ function readproducts(products){
         document.querySelector("#productlist").innerHTML +=`
             <div class="card p-2">
                 <img src="${product.img}"
-                <div class="info"><b>${product.name}</b>  R${product.price}</div>
+                <p class="info"><b>${product.name}</b>  R${product.price}</p>
                 <div class="p-2">
                   <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${i}">Edit</button>
                   <button class="btn btn-danger" onclick="delproduct(${i})">Delete</button>
