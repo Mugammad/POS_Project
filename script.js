@@ -128,3 +128,28 @@ function editproduct(i){
         alert(err)
     }
 }
+
+function filterAll(){
+    readproducts(products)
+}
+
+function filterBread(){
+    let newProducts = products.filter(product =>{
+        return product.catergory == "Bread";
+    })
+    readproducts(newProducts)
+}
+
+function filterJuice(){
+    let newProducts = products.filter(product =>{
+        return product.catergory == "Juices";
+    })
+    readproducts(newProducts)
+}
+
+function filterSweets(){
+    let newProducts = products.filter(product =>{
+        return product.catergory == "Sweets";
+    })
+    readproducts(newProducts)
+}
