@@ -11,17 +11,40 @@
 <body>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid justify-content-end">
+            <a href="index.html" class="active btn">Home</a>
+            <a href="cart.html" class="btn mx-2 cartBtn"><span>cart</span><span class="badge"></span></a>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProduct">Add Product</button>
         </div>
     </nav>
     <div class="container-sm mt-3">
-        <div class="filterBtn text-center">
-            <button class="btn btn-success" onclick="filterAll()">All</button>
-            <button class="btn btn-success" onclick="filterBread()">Bread</button>
-            <button class="btn btn-success" onclick="filterJuice()">Juice</button>
-            <button class="btn btn-success" onclick="filterSweets()">Sweets</button>
+        <div class="filterBtn">
+            <div>
+                <label for="sortCategory" class="form-label">Sort by category</label>
+                <select name="sortCategory" id="sortCategory" onchange="sortByCategory()">
+                    <option value="All">All</option>
+                    <option value="Bread">Bread</option>
+                    <option value="Juices">Juices</option>
+                    <option value="Sweets">Sweets</option>
+                </select>
+            </div>
+            <div>
+                <label for="priceSort">Sort by price</label>
+                <select name="priceSort" id="priceSort" onchange="priceSort()">
+                    <option value="empty"></option>
+                    <option value="Ascending">Ascending</option>
+                    <option value="Descending">Decending</option>
+                </select>
+            </div>
+            <div>
+                <label for="sortName">Sort by name</label>
+                <select name="sortName" id="sortName" onchange="sortName()">
+                    <option value="empty2"></option>
+                    <option value="Ascending">Ascending</option>
+                    <option value="Descending">Decending</option>
+                </select>
+            </div>
         </div>
-        <div id="productlist"></div>
+        <div id="productlist" class="mt-3"></div>
         <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">

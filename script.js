@@ -20,25 +20,28 @@ let products = [
     {
         name: "loaf",
         catergory: "Bread",
-        price: "10 000",
+        price: "10000",
         img: "https://www.thespruceeats.com/thmb/aKWwztjCoTsiPzayXvDYx6QLyOs=/4288x2412/smart/filters:no_upscale()/loaf-of-bread-182835505-58a7008c5f9b58a3c91c9a14.jpg"
     }
 ]
 
 products = JSON.parse(localStorage.getItem("products")) ? JSON.parse(localStorage.getItem("products")) : products;
 
-
+let cart = JSON.parse(localStorage.getItem("cart")) ? JSON.parse(localStorage.getItem("cart")) : [];
 
 function readproducts(products){
     document.querySelector("#productlist").innerHTML = ""
+    document.querySelector('.badge').innerHTML = ''
     products.forEach((product, i) => {
         document.querySelector("#productlist").innerHTML +=`
             <div class="card p-2">
                 <img src="${product.img}"
                 <p class="info"><b>${product.name}</b>  R${product.price}</p>
-                <div class="p-2">
-                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${i}">Edit</button>
-                  <button class="btn btn-danger" onclick="delproduct(${i})">Delete</button>
+                <div class="p-2 row">
+                    <input type="number" min=1 value=1 id="qtyInput-${i}" class="col-6">
+                    <button class="btn btn-success col-6" onclick="addToCart(${i})">Add to cart</button>
+                    <button class="btn btn-primary col-6 mt-3" data-bs-toggle="modal" data-bs-target="#modal-${i}">Edit</button>
+                    <button class="btn btn-danger col-6 mt-3" onclick="delproduct(${i})">Delete</button>
                 </div>
             <div>
             
@@ -71,6 +74,15 @@ function readproducts(products){
             </div>
         `
     });
+
+    let totalQty = 0
+
+    cart.forEach(item =>{
+        totalQty += parseInt(item.qty)
+    })
+    if(totalQty != 0){
+        document.querySelector('.badge').innerHTML = totalQty
+    }
 }
 
 readproducts(products)
@@ -84,7 +96,7 @@ function addproduct(){
         products.forEach(product => {
             if(product.name.toLowerCase() == newproduct.toLowerCase()) throw "product already added";
         })
-        if(newproduct == "") throw "You didn't type anything";
+        if(newproduct == "" || price == "" || img == "") throw "You didn't fill in all inputs";
         
         products.push({
           name: newproduct,
@@ -129,27 +141,80 @@ function editproduct(i){
     }
 }
 
-function filterAll(){
+function addToCart(i){
+    let qty = document.querySelector(`#qtyInput-${i}`).value;
+    let inCart = false;
+    cart.forEach((item) => {
+        if(products[i].name == item.name){
+            item.qty = parseInt(item.qty) + parseInt(qty)
+            inCart = true
+            localStorage.setItem("cart", JSON.stringify(cart))
+        }
+    })
+
+    if(!inCart){
+        cart.push({...products[i], qty})
+        localStorage.setItem("cart", JSON.stringify(cart))
+    }
     readproducts(products)
 }
 
-function filterBread(){
-    let newProducts = products.filter(product =>{
-        return product.catergory == "Bread";
-    })
-    readproducts(newProducts)
+
+
+//filter stuff
+
+function sortByCategory(){
+    sortName()
+    priceSort()
+    readproducts(filteredProducts)
 }
 
-function filterJuice(){
-    let newProducts = products.filter(product =>{
-        return product.catergory == "Juices";
-    })
-    readproducts(newProducts)
-}
+function priceSort() {
+    document.querySelector("#sortName").value = "empty"
+    let direction = document.querySelector("#priceSort").value;
+    let sortby = document.querySelector('#sortCategory').value
+    let filteredProducts
+    if(sortby == "All"){
+        readproducts(products)
+        filteredProducts = products
+    }else{
+        filteredProducts = products.filter(product =>{
+            return product.catergory == sortby
+        })
+    }
+    
+  
+    let sortedProducts = filteredProducts.sort((a, b) => a.price - b.price);
+  
+    console.log(sortedProducts);
+  
+    if (direction == "Descending") sortedProducts.reverse();
+    readproducts(sortedProducts);
+  }
 
-function filterSweets(){
-    let newProducts = products.filter(product =>{
-        return product.catergory == "Sweets";
-    })
-    readproducts(newProducts)
-}
+  function sortName() {
+    document.querySelector("#priceSort").value = "empty";
+    let direction = document.querySelector("#sortName").value;
+    let sortby = document.querySelector('#sortCategory').value
+    if(sortby == "All"){
+        readproducts(products)
+        filteredProducts = products
+    }else{
+        filteredProducts = products.filter(product =>{
+            return product.catergory == sortby
+        })
+    }
+  
+    let sortedProducts = filteredProducts.sort((a, b) => {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        return -1;
+      }
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    });
+    if (direction == "Descending") sortedProducts.reverse();
+    console.log(sortedProducts);
+    readproducts(sortedProducts);
+  }
