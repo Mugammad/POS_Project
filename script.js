@@ -124,10 +124,13 @@ function editproduct(i){
     let price = document.querySelector(`#PriceModalInput-${i}`).value
     let img = document.querySelector(`#ImgModalInput-${i}`).value
     try{
+        if(newproduct == "" || price == "" || img == "") throw "You didn't fill in all inputs";
         products.forEach(product => {
             if(product.name.toLowerCase() == newproduct.toLowerCase()) throw "That product is already on the list";
         })
-        if(newproduct == "") throw "You did'nt type anything";
+        if(newproduct == "") throw "You didn't type anything";
+        if(!img.startsWith("https")) throw "invalid image source"
+        
         products[i] = {
           name: newproduct,
           catergory,
